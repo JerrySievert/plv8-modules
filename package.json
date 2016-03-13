@@ -1,0 +1,20 @@
+{
+  "name": "plv8-modules",
+  "version": "1.0.0",
+  "description": "PLV8 CommonJS Module System",
+  "main": "./bin/plv8-install",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "plv8",
+    "commonjs"
+  ],
+  "author": "Jerry Sievert <code@legitimatesounding.com> (http://legitimatesounding.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "ansi-color": "^0.2.1",
+    "optimist": "^0.6.1",
+    "pg": "^4.5.1"
+  }
+}
