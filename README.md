@@ -2,7 +2,13 @@
 
 A CommonJS Module System for PLV8.
 
+This is a work in progress, and will currently only install simple modules.
+
 ## Installing
+
+```
+$ bin/install_modules -d database -h host -u username -p password
+```
 
 ### Modifying PostgreSQL Configuration
 
@@ -15,6 +21,12 @@ In `postgresql.conf`, add the following:
 
 This should be added after the line that says `# Add settings for extensions here`,
 and Postgres should then be started.
+
+## Using
+
+```
+$ bin/add_module -d database -h host -u username -p password --module ./cryptojs --name cryptojs
+```
 
 ## Under the Hood
 
