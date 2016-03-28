@@ -25,7 +25,7 @@ and Postgres should then be started.
 ## Using
 
 ```
-$ bin/add_module -d database -h host -u username -p password --module ./cryptojs --name cryptojs
+$ bin/add_module -d database -h host -u username -p password --path ./cryptojs --name cryptojs
 ```
 
 ## Under the Hood
