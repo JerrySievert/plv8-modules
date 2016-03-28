@@ -1,22 +1,22 @@
 #!/usr/bin/env node
 
-var argv = require('optimist')
-    .usage('Install CommonJS Functions.\nUsage: $0')
-    .demand('d')
-    .alias('d', 'database')
-    .describe('d', 'Database to be installed in')
-    .default('h', 'localhost')
-    .alias('h', 'host')
-    .describe('h', 'Database host')
-    .default('p', 'password')
-    .alias('p', 'password')
-    .describe('u', 'User')
-    .default('u', 'postgres')
-    .alias('u', 'user')
+var argv = require('yargs')
+    .usage('Install CommonJS Module.\nUsage: $0')
+    .demand('database')
+    .alias('database', 'd')
+    .describe('database', 'Database to be installed in')
+    .default('host', 'localhost')
+    .alias('host', 'h')
+    .describe('host', 'Database host')
+    .default('password', 'password')
+    .alias('password', 'p')
+    .describe('password', 'Database password')
+    .describe('user', 'User')
+    .default('user', 'postgres')
+    .alias('user', 'u')
     .argv,
     pg   = require('pg'),
     fs   = require('fs');
-
 
 
 var sqlFiles = fs.readdirSync(__dirname + "/../sql/").sort();

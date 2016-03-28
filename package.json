@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "ansi-color": "^0.2.1",
-    "optimist": "^0.6.1",
-    "pg": "^4.5.1"
+    "pg": "^4.5.1",
+    "required": "^1.0.0",
+    "yargs": "^4.3.1"
   }
 }

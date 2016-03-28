@@ -1,33 +1,32 @@
 CREATE OR REPLACE FUNCTION commonjs.plv8_startup() RETURNS BOOLEAN AS
 $$
-//  var plv8.context = [ ];
+  plv8.context = [ ];
 
   plv8.require = function (module_name) {
-    var query = "SELECT module_code FROM commonjs.plv8_modules WHERE module = $1";
+    var query = "SELECT code FROM commonjs.plv8_modules WHERE module = $1";
 
     var module = { };
     var exports = { };
 
-    plv8.elog(NOTICE, query);
-
     try {
-//      if (plv8.context.length) {
-//        module_name = plv8.context.join("/") + "/" + module_name;
-//      }
+      if (plv8.context.length) {
+        module_name = plv8.context.join("/") + "/" + module_name;
+      }
 
-      plv8.elog(NOTICE, "requiring " + module_name);
       var res = plv8.execute(query, [ module_name ]);
 
       if (res && res.length) {
-//        plv8.context.push(module_name);
+        plv8.context.push(module_name);
         eval(res[0].code);
-//        plv8.context.pop();
+        plv8.context.pop();
 
         return exports;
       } else {
+        plv8.elog(NOTICE, "module " + module_name + "not found");
         return null;
       }
     } catch (err) {
+      plv8.elog(NOTICE, "error", err);
       return null;
     }
   }
