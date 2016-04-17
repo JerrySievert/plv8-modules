@@ -47,6 +47,9 @@ $$
     }
   };
 
+  this.require = plv8.require;
+  this.console = plv8.console;
+
   return true;
 $$
 LANGUAGE plv8 IMMUTABLE STRICT;
