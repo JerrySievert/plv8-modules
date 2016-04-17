@@ -4,7 +4,7 @@
   "description": "PLV8 CommonJS Module System",
   "main": "./bin/plv8-install",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "equinox -d test --files ./test/tests.js -r tap | tap-nyan"
   },
   "keywords": [
     "plv8",
@@ -17,5 +17,9 @@
     "pg": "^4.5.1",
     "required": "^1.0.0",
     "yargs": "^4.3.1"
+  },
+  "devDependencies": {
+    "equinox": "^1.0.4",
+    "tap-nyan": "0.0.2"
   }
 }
