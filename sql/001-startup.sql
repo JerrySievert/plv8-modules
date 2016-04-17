@@ -22,7 +22,7 @@ $$
 
         return exports;
       } else {
-        plv8.elog(NOTICE, "module " + module_name + "not found");
+        plv8.elog(NOTICE, "module " + module_name + " not found");
         return null;
       }
     } catch (err) {
