@@ -62,3 +62,14 @@ var Cromag = require('cromag');
 
 var date = new Cromag();
 ```
+
+## Testing
+
+PLV8-Modules uses [equinox](https://github.com/JerrySievert/equinox) for testing.
+
+```
+$ npm test
+```
+
+This makes the assumption that you have a database named `test`, that has been
+instrumented with `bin/install_modules`.
