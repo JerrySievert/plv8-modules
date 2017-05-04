@@ -28,11 +28,10 @@ var argv = require('yargs')
 var dependencies = require('../lib/dependencies');
 
 var entry = dependencies.get_entrypoint(__dirname + "/../" + argv.path);
-console.log(entry);
-var module;
+var module_data;
 
 try {
-  module = fs.readFileSync(__dirname + "/../" + argv.path + '/' + entry);
+  module_data = fs.readFileSync(__dirname + "/../" + argv.path + '/' + entry);
 } catch (err) {
   return console.log("Unable to read module", err);
 }
@@ -55,7 +54,7 @@ client.connect(function (err) {
       return console.error('error running query', err);
     }
 
-    addModule(client, module, argv.name);
+    addModule(client, module_data, argv.name);
   });
 });
 

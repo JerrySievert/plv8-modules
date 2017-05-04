@@ -36,7 +36,7 @@ attempts to make everything clear so that it is easy to understand and extend.
 ### Namespacing
 
 PLV8-Modules only works inside of the database that it has been instrumented
-into.  The environment that it is installed into uses the `commonjs` schema,
+into.  The environment that it is installed into uses the `commonjs` _schema_,
 which gives it separation from the rest of the tables and functions.  It also
 uses the `plv8` namespace to make `require` available to code that wants to use
 the _commonjs_ module system.
@@ -53,40 +53,23 @@ used to store the code and make it available via `require`.
 | code | TEXT | Javascript Module |
 
 All code is stored in the `plv8_modules` table, and is queried as part of the
-`plv8.require()` method.
+`require()` method.
 
 #### Requiring Modules
 
-PLV8 separates execution context, which allows for a more secure environment,
-but explicitly removes any global context except for the _plv8_ module itself.
-The `require` method is bound to the _plv8_ namespace, which makes it available
-to any _plv8_ function via `plv8.require()`:
-
 ```js
-var Cromag = plv8.require('cromag');
+var Cromag = require('cromag');
 
 var date = new Cromag();
 ```
 
-#### Instrumentation
+## Testing
 
-As part of the instrumentation process, `require` is assigned `plv8.require`,
-and `console` is assigned `plv8.console`:
+PLV8-Modules uses [equinox](https://github.com/JerrySievert/equinox) for testing.
 
 ```
-CREATE OR REPLACE FUNCTION yesterday() RETURNS TEXT AS
-$$
-  // instrumented
-  var require = plv8.require;
-  var console = plv8.console;
-
-  // your code
-  var Cromag = require('cromag');
-  var yesterday = Cromag.yesterday();
-
-  console.log("yesterday was " + yesterday.toYMD());
-
-  return yesterday.toYMD();
-$$
-LANGUAGE plv8 IMMUTABLE STRICT;
+$ npm test
 ```
+
+This makes the assumption that you have a database named `test`, that has been
+instrumented with `bin/install_modules`.
